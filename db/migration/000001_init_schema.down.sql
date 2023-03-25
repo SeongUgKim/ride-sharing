@@ -1,4 +1,5 @@
 DROP TABLE if EXISTS ratings;
 DROP TABLE if EXISTS trips;
 DROP TABLE if EXISTS drivers;
+DROP TABLE if EXISTS cabs;
 DROP TABLE if EXISTS customers;

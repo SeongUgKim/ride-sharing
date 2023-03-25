@@ -1,20 +1,22 @@
 CREATE TABLE "customers" (
                              "id" uuid PRIMARY KEY,
-                             "username" varchar NOT NULL,
+                             "username" varchar NOT NULL UNIQUE,
                              "hashed_password" varchar NOT NULL,
                              "full_name" varchar NOT NULL,
                              "email" varchar NOT NULL,
+                             "password_changed_at" timestamptz NOT NULL DEFAULT('0001-01-01 00:00:00Z'),
                              "created_at" timestamptz NOT NULL DEFAULT (now())
 );
 
 CREATE TABLE "drivers" (
                            "id" uuid PRIMARY KEY,
-                           "username" varchar NOT NULL,
+                           "username" varchar NOT NULL UNIQUE,
+                           "hashed_password" varchar NOT NULL,
                            "full_name" varchar NOT NULL,
-                           "cab_id" uuid NOT NULL,
                            "email" varchar NOT NULL,
+                           "cab_id" uuid NOT NULL,
                            "dob" date NOT NULL,
-                           "location" point NOT NULL,
+                           "password_changed_at" timestamptz NOT NULL DEFAULT('0001-01-01 00:00:00Z'),
                            "created_at" timestamptz NOT NULL DEFAULT (now())
 );
 
@@ -37,15 +39,17 @@ CREATE TABLE "trips" (
                          "created_at" timestamptz NOT NULL DEFAULT (now())
 );
 
-CREATE INDEX ON "customers" ("username");
+CREATE TABLE "cabs" (
+    "id" uuid PRIMARY KEY,
+    "cab_type" varchar NOT NULL,
+    "reg_no" uuid NOT NULL,
+    "created_at" timestamptz NOT NULL DEFAULT (now())
+);
 
-CREATE UNIQUE INDEX ON "customers" ("username", "email");
-
-CREATE INDEX ON "drivers" ("username");
-
-CREATE UNIQUE INDEX ON "drivers" ("username", "email");
 
 COMMENT ON COLUMN "ratings"."rating" IS 'must be positive';
+
+ALTER TABLE "drivers" ADD FOREIGN KEY ("cab_id") REFERENCES "cabs" ("id");
 
 ALTER TABLE "ratings" ADD FOREIGN KEY ("customer_id") REFERENCES "customers" ("id");
 
