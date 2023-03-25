@@ -15,13 +15,13 @@ func createRandomCab(t *testing.T) Cab {
 	randomRegNo, err := uuid.NewRandom()
 	require.NoError(t, err)
 
-	arg := CreateCabsParams{
+	arg := CreateCabParams{
 		ID:      randomID,
 		CabType: util.X,
 		RegNo:   randomRegNo,
 	}
 
-	cab, err := testQueries.CreateCabs(context.Background(), arg)
+	cab, err := testQueries.CreateCab(context.Background(), arg)
 	require.NoError(t, err)
 	require.Equal(t, arg.ID, cab.ID)
 	require.Equal(t, arg.CabType, cab.CabType)

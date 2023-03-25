@@ -15,10 +15,14 @@ func createRandomCustomer(t *testing.T) Customer {
 	require.NoError(t, err)
 
 	username := util.RandomName()
+
+	hashedPassword, err := util.HashPassword(util.RandomString(6))
+	require.NoError(t, err)
+
 	arg := CreateCustomerParams{
 		ID:             randomUUID,
 		Username:       username,
-		HashedPassword: "",
+		HashedPassword: hashedPassword,
 		FullName:       username,
 		Email:          util.RandomEmail(),
 	}

@@ -11,17 +11,21 @@ import (
 )
 
 type Querier interface {
-	CreateCabs(ctx context.Context, arg CreateCabsParams) (Cab, error)
+	CreateCab(ctx context.Context, arg CreateCabParams) (Cab, error)
 	CreateCustomer(ctx context.Context, arg CreateCustomerParams) (Customer, error)
 	CreateDriver(ctx context.Context, arg CreateDriverParams) (Driver, error)
+	CreateTrip(ctx context.Context, arg CreateTripParams) (Trip, error)
 	DeleteCab(ctx context.Context, id uuid.UUID) error
 	DeleteCustomer(ctx context.Context, id uuid.UUID) error
 	DeleteDriver(ctx context.Context, username string) error
+	DeleteTrip(ctx context.Context, arg DeleteTripParams) error
 	GetCab(ctx context.Context, id uuid.UUID) (Cab, error)
 	GetCustomer(ctx context.Context, id uuid.UUID) (Customer, error)
 	GetDriver(ctx context.Context, id uuid.UUID) (Driver, error)
+	GetTrip(ctx context.Context, arg GetTripParams) (Trip, error)
 	UpdateCab(ctx context.Context, arg UpdateCabParams) (Cab, error)
 	UpdateDriver(ctx context.Context, arg UpdateDriverParams) (Driver, error)
+	UpdateTrip(ctx context.Context, arg UpdateTripParams) (Trip, error)
 }
 
 var _ Querier = (*Queries)(nil)

@@ -16,11 +16,14 @@ func createRandomDriver(t *testing.T) Driver {
 
 	randomCab := createRandomCab(t)
 
+	hashedPassword, err := util.HashPassword(util.RandomString(6))
+	require.NoError(t, err)
+
 	username := util.RandomName()
 	arg := CreateDriverParams{
 		ID:             randomID,
 		Username:       username,
-		HashedPassword: "",
+		HashedPassword: hashedPassword,
 		FullName:       username,
 		Email:          util.RandomEmail(),
 		CabID:          randomCab.ID,

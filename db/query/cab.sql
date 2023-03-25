@@ -1,4 +1,4 @@
--- name: CreateCabs :one
+-- name: CreateCab :one
 INSERT INTO cabs (
   id,
   cab_type,

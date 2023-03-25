@@ -51,11 +51,9 @@ type Rating struct {
 }
 
 type Trip struct {
-	ID          uuid.UUID     `json:"id"`
-	CustomerID  uuid.UUID     `json:"customer_id"`
-	DriverID    uuid.NullUUID `json:"driver_id"`
-	Status      string        `json:"status"`
-	Source      interface{}   `json:"source"`
-	Destination interface{}   `json:"destination"`
-	CreatedAt   time.Time     `json:"created_at"`
+	ID         uuid.UUID     `json:"id"`
+	CustomerID uuid.UUID     `json:"customer_id"`
+	DriverID   uuid.NullUUID `json:"driver_id"`
+	Status     string        `json:"status"`
+	CreatedAt  time.Time     `json:"created_at"`
 }

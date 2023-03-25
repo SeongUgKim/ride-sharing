@@ -34,8 +34,6 @@ CREATE TABLE "trips" (
                          "customer_id" uuid NOT NULL,
                          "driver_id" uuid,
                          "status" varchar NOT NULL,
-                         "source" point NOT NULL,
-                         "destination" point NOT NULL,
                          "created_at" timestamptz NOT NULL DEFAULT (now())
 );
 

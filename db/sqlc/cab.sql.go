@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 )
 
-const createCabs = `-- name: CreateCabs :one
+const createCab = `-- name: CreateCab :one
 INSERT INTO cabs (
   id,
   cab_type,
@@ -21,14 +21,14 @@ INSERT INTO cabs (
 ) RETURNING id, cab_type, reg_no, created_at
 `
 
-type CreateCabsParams struct {
+type CreateCabParams struct {
 	ID      uuid.UUID `json:"id"`
 	CabType string    `json:"cab_type"`
 	RegNo   uuid.UUID `json:"reg_no"`
 }
 
-func (q *Queries) CreateCabs(ctx context.Context, arg CreateCabsParams) (Cab, error) {
-	row := q.db.QueryRowContext(ctx, createCabs, arg.ID, arg.CabType, arg.RegNo)
+func (q *Queries) CreateCab(ctx context.Context, arg CreateCabParams) (Cab, error) {
+	row := q.db.QueryRowContext(ctx, createCab, arg.ID, arg.CabType, arg.RegNo)
 	var i Cab
 	err := row.Scan(
 		&i.ID,
