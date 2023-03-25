@@ -14,14 +14,17 @@ type Querier interface {
 	CreateCab(ctx context.Context, arg CreateCabParams) (Cab, error)
 	CreateCustomer(ctx context.Context, arg CreateCustomerParams) (Customer, error)
 	CreateDriver(ctx context.Context, arg CreateDriverParams) (Driver, error)
+	CreateRating(ctx context.Context, arg CreateRatingParams) (Rating, error)
 	CreateTrip(ctx context.Context, arg CreateTripParams) (Trip, error)
 	DeleteCab(ctx context.Context, id uuid.UUID) error
 	DeleteCustomer(ctx context.Context, id uuid.UUID) error
 	DeleteDriver(ctx context.Context, username string) error
+	DeleteRating(ctx context.Context, arg DeleteRatingParams) error
 	DeleteTrip(ctx context.Context, arg DeleteTripParams) error
 	GetCab(ctx context.Context, id uuid.UUID) (Cab, error)
 	GetCustomer(ctx context.Context, id uuid.UUID) (Customer, error)
 	GetDriver(ctx context.Context, id uuid.UUID) (Driver, error)
+	GetRating(ctx context.Context, arg GetRatingParams) (Rating, error)
 	GetTrip(ctx context.Context, arg GetTripParams) (Trip, error)
 	UpdateCab(ctx context.Context, arg UpdateCabParams) (Cab, error)
 	UpdateDriver(ctx context.Context, arg UpdateDriverParams) (Driver, error)
